@@ -19,22 +19,29 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: Text(
-            "I am Android Developer!",
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontSize: 40.0,
-              fontStyle: FontStyle.italic,
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
-              backgroundColor: Colors.yellow,
-              wordSpacing: 20.0,
-              decoration: TextDecoration.lineThrough,
-              decorationColor: Colors.green,
-              decorationStyle: TextDecorationStyle.dashed,
-              fontFamily: 'Raleway',
+          child: TextField(
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter a search term'
             ),
-          ),
+          )
+
+          // Text(
+          //   "I am Android Developer!",
+          //   textAlign: TextAlign.right,
+          //   style: TextStyle(
+          //     fontSize: 40.0,
+          //     fontStyle: FontStyle.italic,
+          //     color: Colors.red,
+          //     fontWeight: FontWeight.bold,
+          //     backgroundColor: Colors.yellow,
+          //     wordSpacing: 20.0,
+          //     decoration: TextDecoration.lineThrough,
+          //     decorationColor: Colors.green,
+          //     decorationStyle: TextDecorationStyle.dashed,
+          //     fontFamily: 'Raleway',
+          //   ),
+          // ),
         ),
       ),
     );
