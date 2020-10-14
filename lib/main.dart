@@ -19,12 +19,23 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: TextField(
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Enter a search term'
-            ),
-          )
+          child: Column(
+            children: <Widget>[
+              Image.asset('assets/images/pic.png'),
+            ],
+          ),
+
+          // TextField(
+          //   onChanged: (text) {
+          //     print("First text field: $text");
+          //   },
+          //   obscureText: false,
+          //   decoration: InputDecoration(
+          //     border: OutlineInputBorder(),
+          //     labelText: 'Enter Name',
+          //   ),
+          // )
+
 
           // Text(
           //   "I am Android Developer!",
