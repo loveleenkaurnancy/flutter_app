@@ -48,10 +48,6 @@ class _State extends State<MyApp> {
                 ),
               ),
             ),
-            Container(
-              width: 5.0,
-              height: 0,
-            ),
             FlatButton(
               onPressed: () {
                 //forgot password screen
@@ -61,6 +57,19 @@ class _State extends State<MyApp> {
                   alignment: Alignment.centerLeft,
                   child: Text('Forgot Password')),
             ),
+            Container(
+              width: 5.0,
+              height: 0,
+            ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: MaterialButton(
+                minWidth: double.infinity,
+                textColor: Colors.white,
+                color: Colors.blue,
+                child: Text('Sign In'),
+                onPressed: (){},
+              ),),
           ],
         ),
       ),
