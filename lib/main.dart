@@ -20,14 +20,18 @@ class _State extends State<MyApp> {
     int _count = 0;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sample Code'),
-      ),
-      body: Center(
+      body:Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
+                child: Text(
+                  'Sign in',
+                  style: TextStyle(fontSize: 30),
+                )),
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
@@ -41,10 +45,11 @@ class _State extends State<MyApp> {
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: nameController,
+                obscureText: true,
+                controller: passwordController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Password',
                 ),
               ),
             ),
@@ -59,7 +64,7 @@ class _State extends State<MyApp> {
             ),
             Container(
               width: 5.0,
-              height: 0,
+              height: 20.0,
             ),
             Padding(
               padding: EdgeInsets.all(15),
@@ -70,6 +75,24 @@ class _State extends State<MyApp> {
                 child: Text('Sign In'),
                 onPressed: (){},
               ),),
+            Align(alignment: Alignment.topLeft,
+                child: Row(
+                  children: <Widget>[
+                    Text('First Time? ',
+                      style: TextStyle(
+                        color: Colors.black87,
+                          fontSize: 15.0),
+                    ),
+                    Text(
+                      'Create Account',
+                      style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
           ],
         ),
       ),
