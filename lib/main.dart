@@ -19,159 +19,41 @@ class _State extends State<MyApp> {
   Widget build(BuildContext context) {
     int _count = 0;
 
-    return Scaffold(
-      body:Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-                child: Text(
-                  'Sign in',
-                  style: TextStyle(fontSize: 30),
-                )),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'User Name',
-                ),
+    return MaterialApp(
+      title: 'Flutter layout demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter layout demo'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset('assets/images/edit.png'),
+                  Image.asset('assets/images/edit.png'),
+                  Image.asset('assets/images/edit.png'),
+                ],
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                obscureText: true,
-                controller: passwordController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Image.asset('assets/images/pic.png'),
               ),
-            ),
-            FlatButton(
-              onPressed: () {
-                //forgot password screen
-              },
-              textColor: Colors.blue,
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Forgot Password')),
-            ),
-            Container(
-              width: 5.0,
-              height: 20.0,
-            ),
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: MaterialButton(
-                minWidth: double.infinity,
-                textColor: Colors.white,
-                color: Colors.blue,
-                child: Text('Sign In'),
-                onPressed: (){},
-              ),),
-            Align(alignment: Alignment.topLeft,
-                child: Row(
-                  children: <Widget>[
-                    Text('First Time? ',
-                      style: TextStyle(
-                        color: Colors.black87,
-                          fontSize: 15.0),
-                    ),
-                    Text(
-                      'Create Account',
-                      style: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ))
-          ],
+              Expanded(
+                child: Image.asset('assets/images/pic.png'),
+              ),
+              Expanded(
+                child: Image.asset('assets/images/pic.png'),
+              ),
+            ],
+          ),
+            ],
+          )
         ),
       ),
     );
   }
-
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //       body: Padding(
-  //           padding: EdgeInsets.all(10),
-  //           child: Column(
-  //             mainAxisSize: MainAxisSize.max,
-  //             children: <Widget>[
-  //               Container(
-  //                   alignment: Alignment.center,
-  //                   padding: EdgeInsets.all(10),
-  //                   child: Text(
-  //                     'Sign in',
-  //                     style: TextStyle(fontSize: 20),
-  //                   )),
-  //               Container(
-  //                 padding: EdgeInsets.all(10),
-  //                 child: TextField(
-  //                   controller: nameController,
-  //                   decoration: InputDecoration(
-  //                     border: OutlineInputBorder(),
-  //                     labelText: 'User Name',
-  //                   ),
-  //                 ),
-  //               ),
-  //               Container(
-  //                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-  //                 child: TextField(
-  //                   obscureText: true,
-  //                   controller: passwordController,
-  //                   decoration: InputDecoration(
-  //                     border: OutlineInputBorder(),
-  //                     labelText: 'Password',
-  //                   ),
-  //                 ),
-  //               ),
-  //               FlatButton(
-  //                 onPressed: () {
-  //                   //forgot password screen
-  //                 },
-  //                 textColor: Colors.blue,
-  //                 child: Align(
-  //                     alignment: Alignment.centerLeft,
-  //                     child: Text('Forgot Password')),
-  //               ),
-  //               Container(
-  //                   height: 50,
-  //                   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-  //                   child: RaisedButton(
-  //                     textColor: Colors.white,
-  //                     color: Colors.blue,
-  //                     child: Text('Login'),
-  //                     onPressed: () {
-  //                       print(nameController.text);
-  //                       print(passwordController.text);
-  //                     },
-  //                   )),
-  //               Align(alignment: Alignment.topLeft,
-  //                   child: Row(
-  //                     children: <Widget>[
-  //                       Text('First Time? ',
-  //                         style: TextStyle(
-  //                             fontSize: 15.0),
-  //                       ),
-  //                       Text(
-  //                         'Create Account',
-  //                         style: TextStyle(
-  //                             fontSize: 15.0, decoration: TextDecoration.underline),
-  //                       ),
-  //                     ],
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                   ))
-  //             ],
-  //           )));
-  // }
-
 }
