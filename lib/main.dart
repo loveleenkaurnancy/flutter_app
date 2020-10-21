@@ -36,13 +36,14 @@ class _State extends State<MyApp> {
                   Image.asset('assets/images/edit.png'),
                 ],
               ),
-          Row(
+              Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: Image.asset('assets/images/pic.png'),
               ),
               Expanded(
+                flex : 2,
                 child: Image.asset('assets/images/pic.png'),
               ),
               Expanded(
@@ -50,10 +51,55 @@ class _State extends State<MyApp> {
               ),
             ],
           ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      stars,
+                      text
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      stars,
+                      text
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      stars,
+                      text
+                    ],
+                  )
+                ],
+              ),
             ],
           )
         ),
       ),
     );
   }
+
+  var descTextStyle = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w800,
+    fontFamily: 'Roboto',
+    letterSpacing: 0.5,
+    fontSize: 18,
+    height: 2,
+  );
+
+  var text = Text("data");
+
+  var stars = Row(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Icon(Icons.star, color: Colors.green[500]),
+      Icon(Icons.star, color: Colors.green[500]),
+      Icon(Icons.star, color: Colors.green[500]),
+      Icon(Icons.star, color: Colors.black),
+      Icon(Icons.star, color: Colors.black),
+    ],
+  );
 }
