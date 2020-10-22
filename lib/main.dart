@@ -26,80 +26,35 @@ class _State extends State<MyApp> {
           title: Text('Flutter layout demo'),
         ),
         body: Container(
+          decoration: BoxDecoration(
+            color: Colors.black26,
+          ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.asset('assets/images/edit.png'),
-                  Image.asset('assets/images/edit.png'),
-                  Image.asset('assets/images/edit.png'),
-                ],
-              ),
-              Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Image.asset('assets/images/pic.png'),
-              ),
-              Expanded(
-                flex : 2,
-                child: Image.asset('assets/images/pic.png'),
-              ),
-              Expanded(
-                child: Image.asset('assets/images/pic.png'),
-              ),
+              _buildImageRow(1),
+              _buildImageRow(3)
             ],
           ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      stars,
-                      text
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      stars,
-                      text
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      stars,
-                      text
-                    ],
-                  )
-                ],
-              ),
-            ],
-          )
         ),
       ),
     );
   }
-
-  var descTextStyle = TextStyle(
-    color: Colors.black,
-    fontWeight: FontWeight.w800,
-    fontFamily: 'Roboto',
-    letterSpacing: 0.5,
-    fontSize: 18,
-    height: 2,
-  );
-
-  var text = Text("data");
-
-  var stars = Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(Icons.star, color: Colors.green[500]),
-      Icon(Icons.star, color: Colors.green[500]),
-      Icon(Icons.star, color: Colors.green[500]),
-      Icon(Icons.star, color: Colors.black),
-      Icon(Icons.star, color: Colors.black),
-    ],
-  );
 }
+
+Widget _buildDecoratedImage(int imageIndex) => Expanded(
+  child: Container(
+    decoration: BoxDecoration(
+      border: Border.all(width: 10, color: Colors.black38),
+      borderRadius: const BorderRadius.all(const Radius.circular(8)),
+    ),
+    margin: const EdgeInsets.all(4),
+    child: Image.asset('assets/images/pic.png'),
+  ),
+);
+
+Widget _buildImageRow(int imageIndex) => Row(
+  children: [
+    _buildDecoratedImage(imageIndex),
+    _buildDecoratedImage(imageIndex + 1),
+  ],
+);
