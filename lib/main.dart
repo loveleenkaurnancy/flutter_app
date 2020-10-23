@@ -29,12 +29,16 @@ class _State extends State<MyApp> {
           decoration: BoxDecoration(
             color: Colors.black26,
           ),
-          child: Column(
-            children: [
-              _buildImageRow(1),
-              _buildImageRow(3)
-            ],
-          ),
+          child: GridView.count(
+            crossAxisCount: 2 ,
+            children: List.generate(10,(index){
+              return Container(
+                child: Card(
+                  color: Colors.blue,
+                ),
+              );
+            }),
+          )
         ),
       ),
     );
