@@ -29,12 +29,36 @@ class _State extends State<MyApp> {
           decoration: BoxDecoration(
             color: Colors.black26,
           ),
-          child: _buildList()
+          child: _buildStack()
         ),
       ),
     );
   }
 }
+
+Widget _buildStack() => Stack(
+  alignment: const Alignment(0.6, 0.6),
+  children: [
+    CircleAvatar(
+      backgroundImage: AssetImage('assets/images/pic.png'),
+      radius: 100,
+    ),
+    Container(
+      decoration: BoxDecoration(
+        color: Colors.black45,
+      ),
+      child: Text(
+        'Mia B',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    ),
+  ],
+);
+
 
 Widget _buildList() => ListView(
   children: [
