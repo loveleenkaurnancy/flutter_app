@@ -20,6 +20,12 @@ class _State extends State<MyApp> {
           appBar: AppBar(
             title: Text('Flutter FlatButton Example'),
           ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.navigation),
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.white,
+            onPressed: () => {},
+          ),
           body: Center(child: Column(children: <Widget>[
             Container(
               margin: EdgeInsets.all(25),
