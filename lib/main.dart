@@ -13,6 +13,35 @@ class MyApp extends StatefulWidget {
 
 class _State extends State<MyApp> {
 
+  List<ListItem> _dropdownItems = [
+    ListItem(1, "Android"),
+    ListItem(2, "iOS"),
+    ListItem(3, "Flutter"),
+    ListItem(4, "React Native")
+  ];
+
+  List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
+  ListItem _itemSelected;
+
+  void initState() {
+    super.initState();
+    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
+    _itemSelected = _dropdownMenuItems[1].value;
+  }
+
+  List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
+    List<DropdownMenuItem<ListItem>> items = List();
+    for (ListItem listItem in listItems) {
+      items.add(
+        DropdownMenuItem(
+          child: Text(listItem.name),
+          value: listItem,
+        ),
+      );
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,32 +49,38 @@ class _State extends State<MyApp> {
           appBar: AppBar(
             title: Text('Flutter FlatButton Example'),
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.navigation),
-            backgroundColor: Colors.green,
-            foregroundColor: Colors.white,
-            onPressed: () => {},
+          body: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  padding: const EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                      color: Colors.greenAccent,
+                      border: Border.all()),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                        value: _itemSelected,
+                        items: _dropdownMenuItems,
+                        onChanged: (value) {
+                          setState(() {
+                            _itemSelected = value;
+                          });
+                        }),
+                  ),
+                ),
+              ),
+              Text("We have selected ${_itemSelected.name}"),
+            ],
           ),
-          body: Center(child: Column(children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(25),
-              child: FlatButton(
-                child: Text('SignUp', style: TextStyle(fontSize: 20.0),),
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(25),
-              child: FlatButton(
-                child: Text('LogIn', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blueAccent,
-                textColor: Colors.white,
-                onPressed: () {},
-              ),
-            ),
-          ]
-          ))
       ),
     );
   }
+}
+
+class ListItem {
+  int value;
+  String name;
+
+  ListItem(this.value, this.name);
 }
