@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -13,33 +14,15 @@ class MyApp extends StatefulWidget {
 
 class _State extends State<MyApp> {
 
-  List<ListItem> _dropdownItems = [
-    ListItem(1, "Android"),
-    ListItem(2, "iOS"),
-    ListItem(3, "Flutter"),
-    ListItem(4, "React Native")
-  ];
-
-  List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
-  ListItem _itemSelected;
-
-  void initState() {
-    super.initState();
-    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
-    _itemSelected = _dropdownMenuItems[1].value;
-  }
-
-  List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
-    List<DropdownMenuItem<ListItem>> items = List();
-    for (ListItem listItem in listItems) {
-      items.add(
-        DropdownMenuItem(
-          child: Text(listItem.name),
-          value: listItem,
-        ),
-      );
-    }
-    return items;
+  void showToast() {
+    Fluttertoast.showToast(
+        msg: 'This is toast notification',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.yellow
+    );
   }
 
   @override
@@ -49,29 +32,14 @@ class _State extends State<MyApp> {
           appBar: AppBar(
             title: Text('Flutter FlatButton Example'),
           ),
-          body: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  padding: const EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                      color: Colors.greenAccent,
-                      border: Border.all()),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                        value: _itemSelected,
-                        items: _dropdownMenuItems,
-                        onChanged: (value) {
-                          setState(() {
-                            _itemSelected = value;
-                          });
-                        }),
-                  ),
-                ),
+          body: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Center(
+              child: RaisedButton(
+                child: Text('click to show'),
+                onPressed: showToast,
               ),
-              Text("We have selected ${_itemSelected.name}"),
-            ],
+            ),
           ),
       ),
     );
