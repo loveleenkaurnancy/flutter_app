@@ -13,58 +13,52 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-
+  var lists = List<String>.generate(11, (index) => "List : $index");
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter'),
-          ),
-          body: MyAlert(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter SnackBar Demo'),
       ),
-    );
-  }
-}
-
-class MyAlert extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: RaisedButton(
-        child: Text('Show alert'),
-        onPressed: () {
-          showAlertDialog(context);
+      body: ListView.builder(
+        itemCount: lists.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(lists[index]),
+            trailing: Container(
+              width: 60,
+              child: FlatButton(
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  showSnackBar(context, index);
+                },
+              ),
+            ),
+          );
         },
       ),
     );
   }
-}
 
-showAlertDialog(BuildContext context) {
-  // Create button
-  Widget okButton = FlatButton(
-    child: Text("OK"),
-    onPressed: () {
-      Navigator.of(context).pop();
-    },
-  );
-
-  // Create AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Simple Alert"),
-    content: Text("This is an alert message."),
-    actions: [
-      okButton,
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
+  void showSnackBar(BuildContext context, int index) {
+    var deletedRecord = lists[index];
+    setState(() {
+      lists.removeAt(index);
+    });
+    SnackBar snackBar = SnackBar(
+      content: Text('Deleted $deletedRecord'),
+      action: SnackBarAction(
+        label: "UNDO",
+        onPressed: () {
+          setState(() {
+            lists.insert(index, deletedRecord);
+          });
+        },
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 }
