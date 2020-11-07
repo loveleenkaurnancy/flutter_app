@@ -20,45 +20,14 @@ class _State extends State<MyApp> {
       appBar: AppBar(
         title: Text('Flutter SnackBar Demo'),
       ),
-      body: ListView.builder(
-        itemCount: lists.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(lists[index]),
-            trailing: Container(
-              width: 60,
-              child: FlatButton(
-                child: Icon(
-                  Icons.delete,
-                  color: Colors.grey,
-                ),
-                onPressed: () {
-                  showSnackBar(context, index);
-                },
-              ),
-            ),
-          );
-        },
-      ),
+      body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Icon(Icons.camera_enhance),
+            Icon(Icons.camera_front),
+            Icon(Icons.camera_rear),
+          ]),
     );
   }
 
-  void showSnackBar(BuildContext context, int index) {
-    var deletedRecord = lists[index];
-    setState(() {
-      lists.removeAt(index);
-    });
-    SnackBar snackBar = SnackBar(
-      content: Text('Deleted $deletedRecord'),
-      action: SnackBarAction(
-        label: "UNDO",
-        onPressed: () {
-          setState(() {
-            lists.insert(index, deletedRecord);
-          });
-        },
-      ),
-    );
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
 }
