@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -20,58 +19,42 @@ class _State extends State<MyApp> {
       appBar: AppBar(
         title: Text('Flutter SnackBar Demo'),
       ),
-      body: Center(
-          child: SwitchScreen()
+      body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children:<Widget>[
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Tooltip(
+                  waitDuration: Duration(seconds: 1),
+                  showDuration: Duration(seconds: 2),
+                  padding: EdgeInsets.all(5),
+                  height: 35,
+                  textStyle: TextStyle(
+                      fontSize: 15, color: Colors.white, fontWeight: FontWeight.normal),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10), color: Colors.green),
+                  message: 'My Account',
+                  child: FlatButton(
+                    child: Icon(
+                      Icons.account_box,
+                      size: 100,
+                    ),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Tooltip(
+                  message: 'My Account',
+                  child: FlatButton(
+                    child: Icon(
+                      Icons.account_box,
+                      size: 100,
+                    ),
+                  )
+              ),
+            )
+          ]
       ),
     );
-  }
-
-}
-
-class SwitchScreen extends StatefulWidget {
-  @override
-  SwitchClass createState() => new SwitchClass();
-}
-
-class SwitchClass extends State {
-  bool isSwitched = false;
-  var textValue = 'Switch is OFF';
-
-  void toggleSwitch(bool value) {
-
-    if(isSwitched == false)
-    {
-      setState(() {
-        isSwitched = true;
-        textValue = 'Switch Button is ON';
-      });
-      print('Switch Button is ON');
-    }
-    else
-    {
-      setState(() {
-        isSwitched = false;
-        textValue = 'Switch Button is OFF';
-      });
-      print('Switch Button is OFF');
-    }
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:[ Transform.scale(
-            scale: 2,
-            child: Switch(
-              onChanged: toggleSwitch,
-              value: isSwitched,
-              activeColor: Colors.blue,
-              activeTrackColor: Colors.yellow,
-              inactiveThumbColor: Colors.redAccent,
-              inactiveTrackColor: Colors.orange,
-            )
-        ),
-          Text('$textValue', style: TextStyle(fontSize: 20),)
-        ]);
   }
 }
