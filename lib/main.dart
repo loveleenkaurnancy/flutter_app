@@ -36,17 +36,17 @@ class _State extends State<MyApp> {
                         Column(children:[Text('Review', style: TextStyle(fontSize: 20.0))]),
                       ]),
                       TableRow( children: [
-                        Column(children:[Text('Javatpoint')]),
+                        Column(children:[Text('Loveleen')]),
                         Column(children:[Text('Flutter')]),
                         Column(children:[Text('5*')]),
                       ]),
                       TableRow( children: [
-                        Column(children:[Text('Javatpoint')]),
+                        Column(children:[Text('Loveleen')]),
                         Column(children:[Text('MySQL')]),
                         Column(children:[Text('5*')]),
                       ]),
                       TableRow( children: [
-                        Column(children:[Text('Javatpoint')]),
+                        Column(children:[Text('Loveleen')]),
                         Column(children:[Text('ReactJS')]),
                         Column(children:[Text('5*')]),
                       ]),
