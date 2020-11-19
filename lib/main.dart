@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import './FirstScreen.dart';
-import './SecondScreen.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,49 +9,85 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // Define the default brightness and colors.
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue,
-        accentColor: Colors.green,
-
-        // Define the default font family.
-        fontFamily: 'Monotype Coursiva',
-
-        // Define the TextTheme that specifies the default
-        // text styling for headlines, titles, bodies of text, and more.
-        textTheme: TextTheme(
-            headline: TextStyle(fontSize: 32.0, fontStyle: FontStyle.italic, fontFamily: 'Hind')
-        ),
+        primarySwatch: Colors.green,
       ),
-      home: MyThemePage(),
+      home: HomeCalendarPage(),
     );
   }
 }
 
-class MyThemePage extends StatelessWidget {
+class HomeCalendarPage extends StatefulWidget {
+  @override
+  _HomeCalendarPageState createState() => _HomeCalendarPageState();
+}
+
+class _HomeCalendarPageState extends State<HomeCalendarPage> {
+  CalendarController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = CalendarController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Theme Example'),
+        title: Text('Flutter Calendar Example'),
       ),
-      body: Center(
-        child: Container(
-          color: Theme.of(context).accentColor,
-          child: Text(
-            'Themes contains the graphical appearances that makes the user interface more attractive.',
-            style: Theme.of(context).textTheme.headline,
-          ),
-        ),
-      ),
-      floatingActionButton: Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme:
-          Theme.of(context).colorScheme.copyWith(secondary: Colors.blue),
-        ),
-        child: FloatingActionButton(
-          onPressed: null,
-          child: Icon(Icons.person),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TableCalendar(
+              initialCalendarFormat: CalendarFormat.month,
+              calendarStyle: CalendarStyle(
+                  todayColor: Colors.blue,
+                  selectedColor: Theme.of(context).primaryColor,
+                  todayStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0,
+                      color: Colors.white)
+              ),
+              headerStyle: HeaderStyle(
+                centerHeaderTitle: true,
+                formatButtonDecoration: BoxDecoration(
+                  color: Colors.brown,
+                  borderRadius: BorderRadius.circular(22.0),
+                ),
+                formatButtonTextStyle: TextStyle(color: Colors.white),
+                formatButtonShowsNext: false,
+              ),
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              // onDaySelected: (date, events) {
+              //   print(date.toUtc());
+              // },
+              builders: CalendarBuilders(
+                selectedDayBuilder: (context, date, events) => Container(
+                    margin: const EdgeInsets.all(5.0),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Text(
+                      date.day.toString(),
+                      style: TextStyle(color: Colors.white),
+                    )),
+                todayDayBuilder: (context, date, events) => Container(
+                    margin: const EdgeInsets.all(5.0),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Text(
+                      date.day.toString(),
+                      style: TextStyle(color: Colors.white),
+                    )),
+              ),
+              calendarController: _controller,
+            )
+          ],
         ),
       ),
     );
