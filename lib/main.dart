@@ -1,5 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,84 +12,37 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: HomeCalendarPage(),
+      home: SplashScreenPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-class HomeCalendarPage extends StatefulWidget {
+class SplashScreenPage extends StatelessWidget {
   @override
-  _HomeCalendarPageState createState() => _HomeCalendarPageState();
-}
-
-class _HomeCalendarPageState extends State<HomeCalendarPage> {
-  CalendarController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = CalendarController();
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 5,
+      navigateAfterSeconds: new HomeScreen(),
+      backgroundColor: Colors.yellow,
+      title: new Text('Flutter Javatpoint',textScaleFactor: 2,),
+      image: new Image.network(
+          'https://static.javatpoint.com/tutorial/flutter/images/flutter-creating-android-platform-specific-code3.png'
+      ),
+      loadingText: Text("Loading"),
+      photoSize: 150.0,
+      loaderColor: Colors.red,
+    );
   }
-
+}
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Calendar Example'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            TableCalendar(
-              initialCalendarFormat: CalendarFormat.month,
-              calendarStyle: CalendarStyle(
-                  todayColor: Colors.blue,
-                  selectedColor: Theme.of(context).primaryColor,
-                  todayStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
-                      color: Colors.white)
-              ),
-              headerStyle: HeaderStyle(
-                centerHeaderTitle: true,
-                formatButtonDecoration: BoxDecoration(
-                  color: Colors.brown,
-                  borderRadius: BorderRadius.circular(22.0),
-                ),
-                formatButtonTextStyle: TextStyle(color: Colors.white),
-                formatButtonShowsNext: false,
-              ),
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              // onDaySelected: (date, events) {
-              //   print(date.toUtc());
-              // },
-              builders: CalendarBuilders(
-                selectedDayBuilder: (context, date, events) => Container(
-                    margin: const EdgeInsets.all(5.0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.white),
-                    )),
-                todayDayBuilder: (context, date, events) => Container(
-                    margin: const EdgeInsets.all(5.0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.white),
-                    )),
-              ),
-              calendarController: _controller,
-            )
-          ],
-        ),
+      appBar: AppBar(title:Text("Splash Screen Example")),
+      body: Center(
+          child:Text("Welcome to Home Page",
+              style: TextStyle( color: Colors.black, fontSize: 30)
+          )
       ),
     );
   }
