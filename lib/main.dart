@@ -5,39 +5,42 @@ import 'package:splashscreen/splashscreen.dart';
 void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  List<bool> _selections = List.generate(3, (_) => false);
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Center(child: Text('Flutter - tutorialkart.com')),
-          ),
-          body: ListView(children: <Widget>[
-            Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(20),
-                child: ToggleButtons(
-                  children: <Widget>[
-                    Icon(Icons.add_comment),
-                    Icon(Icons.airline_seat_individual_suite),
-                    Icon(Icons.add_location),
-                  ],
-                  isSelected: _selections,
-                  onPressed: (int index) {
-                    setState(() {
-                      _selections[index] = !_selections[index];
-                    });
-                  },
-                ))
-          ]),
-        ));
+      home: Scaffold(
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+                actions: <Widget>[
+                  Icon(Icons.person, size: 40,)
+                ],
+                title: Text("SliverList Example"),
+                leading: Icon(Icons.menu),
+                backgroundColor: Colors.green,
+                expandedHeight: 100.0,
+                floating: true,
+                pinned: true
+            ),
+            SliverList(
+              delegate: new SliverChildListDelegate(_buildList(20)),
+            ),// Place sliver widgets here
+          ],
+        ),
+      ),
+    );
   }
+}
+List _buildList(int count) {
+  List<Widget> listItems = List();
+  for (int i = 0; i < count; i++) {
+    listItems.add(new Padding(padding: new EdgeInsets.all(16.0),
+        child: new Text(
+            'Sliver Item ${i.toString()}',
+            style: new TextStyle(fontSize: 22.0)
+        )
+    ));
+  }
+  return listItems;
 }
